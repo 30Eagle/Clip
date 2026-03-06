@@ -1,39 +1,8 @@
-fopife6868@azduan.com
-123321asddsa
-Conversation with Gemini
-You said
-Extra the notes and correct any grammatical mistakes
-
-Gemini said
-Based on the image provided, I have extracted your notes on TestNG setup and best practices. I’ve cleaned up the phrasing and corrected the grammar to make them more professional and easier to follow.
-
-TestNG Setup & Best Practices (March 5th)
-1. TestNG Plugin Installation
-Process: Go to Help → Eclipse Marketplace → search for "TestNG for Eclipse" and install.
-
-Tip: Select all, accept the terms (select "Trust" if prompted), and proceed with the installation.
-
-2. Adding Dependencies
-You need to add the TestNG dependency to your pom.xml file.
-
-The group ID is usually org.testng.
-
-3. Creating TestNG Classes
-While creating a package, you can directly create a TestNG class.
-
-Execution Order: By default, TestNG methods execute based on the alphabetical order of the method names.
-
-Priority: To control the execution sequence, use the priority attribute: @Test(priority = 1).
-
-Reporting: TestNG automatically generates a test report after execution.
-
-Refining Code Structure & Annotations
-Handling Drivers: If you initialize the driver inside every test method, the tests will create and run in multiple different browser instances, which is inefficient.
-
-Avoiding Redundancy: To avoid duplicate lines of code for creating the driver, use the @BeforeClass annotation.
-
-Method Example: public void setupBrowser() { ... } — place your driver initialization logic here.
-
-Cleanup: Use the @AfterClass annotation for methods that should run after all test methods in the class have finished (e.g., driver.quit()).
-
-Individual Setup: Use @BeforeMethod for code that needs to run before every individual test method.
+Module,Scenario ID,Scenario Name,Scenario Description,Requirement ID
+Demat Form,TS_01,Name Validation,Verify the Name field accepts alphabetic values up to 30 characters.,REQ_01
+Demat Form,TS_02,Age Selection,Verify the Age list box contains the predefined age ranges.,REQ_01
+Demat Form,TS_03,Contact Number,Verify the Contact field only accepts a 10-digit numeric mobile number.,REQ_01
+Demat Form,TS_04,Email Format,Verify the Email field accepts alphanumeric/special characters in valid format.,REQ_01
+Demat Form,TS_05,Service Mandatory,"Verify ""Services Required"" is mandatory and shows error if empty.",REQ_01
+Demat Form,TS_06,Captcha/Image,Verify the user can change and must correctly enter the image characters.,REQ_01
+Demat Form,TS_07,Form Submission,"Verify successful navigation to the ""Submission Successful"" page with valid data.",REQ_01
