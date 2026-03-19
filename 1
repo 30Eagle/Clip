@@ -1,3 +1,65 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
+
+public class OnlineReservation {
+    private WebDriver driver;
+
+    //DO NOT change
+    public OnlineReservation() {}
+
+    //DO NOT change the constructor
+    public OnlineReservation(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void setName(String name) {
+        driver.findElement(By.name("name")).sendKeys(name);
+    }
+
+    public void setMobileNumber(String mobNum) {
+        driver.findElement(By.name("mobile")).sendKeys(mobNum);
+    }
+
+    public void setEmail(String email) {
+        driver.findElement(By.name("email")).sendKeys(email);
+    }
+
+    public void setNumOfGuests(String numOfGuests) {
+        driver.findElement(By.name("count")).sendKeys(numOfGuests);
+    }
+
+    public void setDateOfVisit(String date) {
+        // Using JavascriptExecutor as per instructions in Screenshot 2
+        WebElement dateElement = driver.findElement(By.name("date"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('value', '" + date + "')", dateElement);
+    }
+
+    public void setSlot(String slot) {
+        if (slot.equalsIgnoreCase("lunch")) {
+            driver.findElement(By.id("lunch")).click();
+        } else {
+            driver.findElement(By.id("dinner")).click();
+        }
+    }
+
+    public void setTiming(String timing) {
+        Select selectTiming = new Select(driver.findElement(By.name("time")));
+        selectTiming.selectByVisibleText(timing);
+    }
+
+    public void SubmitForm() {
+        driver.findElement(By.id("reserve")).click();
+    }
+
+    public String getResult() {
+        return driver.findElement(By.id("result")).getText();
+    }
+}
+
 
 import java.io.*;
 import java.text.DateFormat;
