@@ -1,3 +1,48 @@
+import org.openqa.selenium.WebDriver;
+
+public class TestOnlineReservation {
+    private static WebDriver driver;
+    private static String successMsg;
+    OnlineReservation obj;
+    private String baseUrl = "https://webapps.tekstac.com/ThreeLeaves/";
+
+    public WebDriver setUp() {
+        driver = DriverSetup.getDriver();
+        driver.get(baseUrl);
+        obj = new OnlineReservation(driver);
+        return driver;
+    }
+
+    public static String[] getExcelData() throws Exception {
+        return ExcelUtils.readExcelData("customer_details");
+    }
+
+    public String setFormValues() throws Exception {
+        String[] data = getExcelData();
+        
+        obj.setName(data[0]);
+        obj.setMobileNumber(data[1]);
+        obj.setEmail(data[2]);
+        obj.setNumOfGuests(data[3]);
+        obj.setDateOfVisit(data[4]);
+        obj.setSlot(data[5]);
+        obj.setTiming(data[6]);
+        
+        obj.SubmitForm();
+        successMsg = obj.getResult();
+        return successMsg;
+    }
+
+    public static void main(String[] args) throws Exception {
+        TestOnlineReservation test = new TestOnlineReservation();
+        test.setUp();
+        String result = test.setFormValues();
+        System.out.println(result);
+        // driver.quit(); // Optional: Close browser after execution
+    }
+}
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
