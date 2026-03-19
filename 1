@@ -1,4 +1,51 @@
 
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.CellType;
+
+public class ExcelUtils { //Do not change the class name
+
+    public static String[] readExcelData(String sheetName) throws Exception {
+        //Get the excel file path
+        String filePath = "OnlineReservation.xlsx";
+        FileInputStream fis = new FileInputStream(new File(filePath));
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+        XSSFSheet sheet = workbook.getSheet(sheetName);
+        XSSFRow row = sheet.getRow(0); // Assuming data is in the first row as per screenshot
+        
+        int noOfColumns = row.getLastCellNum();
+        String[] data = new String[noOfColumns];
+
+        //Use the string array to store the values from excel
+        for (int i = 0; i < noOfColumns; i++) {
+            //Use switch case for reading different datatypes
+            switch (row.getCell(i).getCellType()) {
+                case STRING:
+                    data[i] = row.getCell(i).getStringCellValue();
+                    break;
+                case NUMERIC:
+                    if (DateUtil.isCellDateFormatted(row.getCell(i))) {
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        data[i] = df.format(row.getCell(i).getDateCellValue());
+                    } else {
+                        // Handle phone numbers or guest counts as strings
+                        data[i] = String.valueOf((long) row.getCell(i).getNumericCellValue());
+                    }
+                    break;
+                default:
+                    data[i] = "";
+            }
+        }
+        workbook.close();
+        return data;
+    }
+}
 Description
 
 
