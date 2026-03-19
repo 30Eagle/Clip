@@ -1,1 +1,324 @@
 
+Description
+
+
+Objective: 
+
+To understand the basic concepts of POM and Excel Apache POI by passing the excel data to the field in the application.  
+
+Problem Description: 
+
+An application that allows Online Restaurant Table reservations has been designed. It also computes the advance payment received and the details like the date and timing of reservation (Refer to screenshot 1). 
+
+You need to enter the Name, Mobile number, Email address, Number of guests, Date of reservation, slot, and the Selected time and click the Reserve button for reservation. (Refer to screenshot 2). 
+
+Advance payment and the details like the date and time of the reservation will be displayed. (Refer to screenshot 3).  
+
+Please refer to the following link for the Application under test: 
+
+https://webapps.tekstac.com/ThreeLeaves/ 
+
+ 
+
+Test Scenario: 
+
+S.No  
+
+Actions to be performed  
+
+Expected Result  
+
+1  
+
+Launch the application     
+
+Application is launched  
+
+2  
+
+Enter the data in the following fields.  
+
+Name - Harry 
+
+Mobile Number - 9782067382 
+
+Email Address - harry@gmail.com 
+
+Number Of Guests - 4 
+
+Date Of Visit - 2022-08-19 
+
+Slot - lunch 
+
+Selected time - 2pm - 3pm 
+
+Click the Reserve button. 
+
+Advance payment, and the date and the timing of the reservation should be displayed. 
+
+ 
+
+ 
+Validation rules: 
+
+- Enter valid data for all fields. 
+
+ 
+ 
+
+Following are the java classes that contain code snippets.  
+
+DriverSetup.java  
+
+Create driver (complete implementation is given to you)  
+
+TestOnlineReservation.java  
+
+Call the driver method to launch the application. 
+
+Pass the excel data to the input fields. 
+
+Return the confirmation message. 
+
+OnlineReservation.java  
+
+Set the name, mobile number, email, noOfGuests, dateOfVisit, slot, and timing.  
+
+ExcelUtils.java  
+
+Read the test data from excel and return the same in an array. 
+
+  
+
+Procedure to complete the case study 
+
+1. class DriverSetup is completely implemented for your reference. This class is configured to test using the Firefox browser and Firefox driver. 
+
+     a) Use the method 'getWebDriver' to create a driver wherever required. 
+
+     b) DO NOT CHANGE THIS CLASS   
+
+2. Class named "OnlineReservation" is already available in template code.  
+  
+
+Hint: In this class, constructors are already given. If required, you can add more code to it but do NOT remove the existing code.  
+
+Fill in the following methods in OnlineReservation.java with the required code.  
+
+Method Name 
+
+Description  
+
+public WebDriver createDriver()  
+
+Method to invoke the driver 
+
+public static void setName(String name) 
+
+Locate the Web Element "Name" using any locator.  
+
+Use the sendKeys() method to fill the Name with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter.  
+
+public static void setMobileNumber(String mobNum) 
+
+Locate the Web Element "Mobile number" using any locator.  
+
+Use the sendKeys() method to fill the Mobile number with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter. 
+
+public static void setEmail(String email) 
+
+Locate the Web Element "Email Id" using any locator.  
+
+Use the sendKeys() method to fill the Email Id with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter. 
+
+public static void setNumOfGuests(String numOfGuests) 
+
+Locate the Web Element "Number of Guests" using any locator.  
+
+Use the sendKeys() method to fill the Number of Guests with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter. 
+
+public static void setDateOfVisit(String date) 
+
+Locate the Web Element "Date of Visit" using any locator.  
+
+Use the JavascriptExecutor  to fill the Date of Visit with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter. 
+
+public static void setSlot(String slot) 
+
+Locate the Web Element "Slot" using any locator.  
+
+Use the click() method to select the "Slot" with the data passed as a parameter to this method
+
+Pass the Test data as a parameter. 
+
+public static void setTiming(String timing) 
+
+Locate the Web Element "Timing" using any locator.  
+
+Use the selectByVisibleText() method to fill the Timing with the data passed as a parameter to this method.  
+
+Pass the Test data as a parameter. 
+
+public static void SubmitForm() 
+
+Locate the "Reserve" button and use the click () method to submit the form. 
+
+public static String getResult() 
+
+Locate the Advance amount and the date and timing of the reservation displayed and return it. 
+
+public static void main (String [] args) 
+
+Create an object of the class OnlineReservation and call the methods. 
+
+1. Call the createDriver()   
+
+2. Call the setName (pass the parameter with valid data) to add the Name of the Guest.  
+
+3. Call the setMobileNumber (pass the parameter with valid data) to add the Mobile number of the Guest. 
+
+4. Call the setEmail (pass the parameter with valid data) to add the Email Address of the Guest. 
+
+5. Call the setNumOfGuests (pass the parameter with valid data) to add the Number of Guests. 
+
+6. Call the setDateOfVisit (pass the parameter with valid data) to add the Date of Visit. 
+
+7. Call the setSlot (pass the parameter with valid data) to add the slot. 
+
+8. Call the setTiming (pass the parameter with valid data) to add the timing of the Guest. 
+
+9. Call the SubmitForm method. 
+
+10. Invoke the getResult method. 
+
+11. Close the driver. 
+
+ 
+ 
+
+ 3. class 'TestOnlineReservation' in TestOnlineReservation.java 
+
+Fill the following methods in TestOnlineReservation.java with the required code.  
+ 
+
+Method Name  
+
+Description  
+
+public WebDriver setUp()  
+
+Create the driver using the method 'getWebDriver'  in class DriverSetup.  
+
+Navigate to the baseUrl. 
+
+Assign it to the variable 'driver'  
+
+Object obj is already created. 
+
+Please do not delete or modify these lines.  
+
+obj=new OnlineRegistration (driver); 
+
+Return the driver 
+
+public static String[] getExcelData()  
+
+Call the method 'readExcelData' in class 'ExcelUtils' using the sheet name 'customer_details'.  
+
+Return the value. 
+
+public WebElement setFormValues() 
+
+Using the 'obj' object, set the form values passed from the method 'getExcelData'. 
+
+ 
+Use the 'obj' object and call the method setName(). 
+
+Use the 'obj' object and call the method setMobileNumber(). 
+
+Use the 'obj' object and call the method setEmail(). 
+
+Use the 'obj' object and call the method setNumOfGuests(). 
+
+Use the 'obj' object and call the method setDateOfVisit().  
+
+Use the 'obj' object and call the method setSlot(). 
+
+Use the 'obj' object and call the method setTiming().  
+
+Use the 'obj' object and call the method submitForm() to click the 'Reserve' button. 
+
+After clicking the button, a message will be displayed.  
+ 
+
+Use the 'obj' object and call the method getResult().  
+
+Return the confirmation message returned by getResult() method. 
+
+public void closeBrowser()  
+
+This method should close the driver. 
+
+ 
+ 
+
+4. class 'ExcelUtils' in ExcelUtils.java,  
+  
+
+a) This class is used to read the OnlineReservation.xlsx excel.  
+
+b) Fill in the given method with the required code  
+
+Method Name  
+
+Description  
+
+public static String[] readExcelData(String sheetName)  
+
+Get the excel file path (note: the excel is located under the same directory).  
+
+Using the sheet name passed to this method, read the data, and store it in a string array.  
+
+Return the array.  
+
+ 
+ 
+
+Excel File:  
+
+Use the excel filename OnlineReservation.xlsx and sheet name as 'customer_details'. 
+
+ 
+
+Screenshots: 
+ 
+Screenshot 1: 
+
+ 
+
+Screenshot 2: 
+ 
+The values passed from the main are set in the appropriate element and the corresponding Reserve button is clicked. 
+
+
+
+
+Screenshot 3:
+
+Advance Payment and the date and the timing of the reservation will be displayed. 
+
+ 
+
+
+Kudos!
+You have earned some XP points.
