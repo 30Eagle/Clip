@@ -1,3 +1,38 @@
+graph TD
+    subgraph Setup
+    A[BaseTest @BeforeClass<br/>Reads config.properties<br/>Creates WebDriver]
+    B[JSON Data + DataProvider<br/>Jackson ObjectMapper<br/>Supplies Search Term & Price]
+    end
+
+    subgraph Coordinator
+    C[Gadget Test @Test<br/>Instantiates Pages<br/>Passes Driver<br/>Orchestrates Actions]
+    end
+
+    subgraph Pages
+    D[HomePage<br/>PageFactory.initElements<br/>searchProduct]
+    E[ProductListPage<br/>Extends AbstractComponent<br/>applyFilters<br/>printTopFive]
+    F[AbstractComponent<br/>Shared waits & helpers<br/>Reusable utilities]
+    end
+
+    G[AfterClass<br/>driver.quit]
+
+    A -->|Driver via inheritance| C
+    B -->|Object inputs| C
+    C -->|New| D
+    C -->|New| E
+    D -->|hp.searchProduct| E
+    E --> F
+    C --> G
+    
+    style A fill:#fff,stroke:#333,color:#000
+    style B fill:#fff,stroke:#333,color:#000
+    style C fill:#fff,stroke:#333,color:#000
+    style D fill:#fff,stroke:#333,color:#000
+    style E fill:#fff,stroke:#333,color:#000
+    style F fill:#fff,stroke:#333,color:#000
+    style G fill:#fff,stroke:#333,color:#000
+
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import org.apache.poi.xssf.usermodel.*;
